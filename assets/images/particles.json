@@ -1,0 +1,44 @@
+{"frames": {
+
+"particle_1.png":
+{
+	"frame": {"x":3,"y":3,"w":31,"h":17},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":31,"h":17},
+	"sourceSize": {"w":31,"h":17}
+},
+"particle_2.png":
+{
+	"frame": {"x":37,"y":3,"w":18,"h":17},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":17},
+	"sourceSize": {"w":18,"h":17}
+},
+"particle_3.png":
+{
+	"frame": {"x":3,"y":23,"w":42,"h":33},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":42,"h":33},
+	"sourceSize": {"w":42,"h":33}
+},
+"particle_4.png":
+{
+	"frame": {"x":3,"y":59,"w":37,"h":22},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":37,"h":22},
+	"sourceSize": {"w":37,"h":22}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "particles.png",
+	"format": "RGBA8888",
+	"size": {"w":58,"h":84},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:f588541436c63d772dd2606fce5e842a:5495503583104b232f196c1546da315d:767f0aa26e08023d62afa20c0c952bea$"
+}
+}
