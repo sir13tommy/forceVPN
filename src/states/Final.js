@@ -66,6 +66,8 @@ export default class extends Phaser.State {
       .delay(Phaser.Timer.SECOND * 1.4)
       .chain(btnIdle)
       .start()
+    
+    message.resolution = 2
 
     function ctaHandler () {
       if (typeof FbPlayableAd !== 'undefined' && FbPlayableAd.onCTAClick) {
