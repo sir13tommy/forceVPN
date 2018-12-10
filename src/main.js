@@ -20,7 +20,15 @@ class Game extends Phaser.Game {
     const width = docElement.clientWidth > config.gameWidth ? config.gameWidth : docElement.clientWidth
     const height = docElement.clientHeight > config.gameHeight ? config.gameHeight : docElement.clientHeight
 
-    super(width, height, Phaser.AUTO, 'content', null)
+    super({
+      width,
+      height,
+      renderer: Phaser.AUTO,
+      parent: 'content',
+      state: null,
+      preserveDrawingBuffer: true
+      // failIfMajorPerformanceCaveat: true
+    })
 
     this.state.add('Boot', BootState, false)
     this.state.add('Splash', SplashState, false)

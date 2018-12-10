@@ -5,16 +5,16 @@ import config from '../config';
 import Debug from 'phaser-debug/dist/phaser-debug'
 
 export default class extends Phaser.State {
-  init() {
+  init () {
     this.stage.backgroundColor = '#e3edfe'
     this.fontsReady = false
     this.fontsLoaded = this.fontsLoaded.bind(this)
-    if (__DEV__) {
+    if (__DEV__ && this.game.device.desktop) {
       this.game.add.plugin(Debug)
     }
   }
 
-  preload() {
+  preload () {
     if (config.webfonts.length) {
       WebFont.load({
         custom: {
