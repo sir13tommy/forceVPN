@@ -4,7 +4,7 @@ export default class extends Phaser.State {
   init () { }
   create (game) {
     let message = game.add.text(0, 0, 'Worry about\nyour data?', {
-      font: 'bold 47px SegoeUI-Bold',
+      font: 'bold 47px notosans-bold',
       fill: '#39b4fe',
       align: 'center'
     })
@@ -21,7 +21,7 @@ export default class extends Phaser.State {
     ctaBtn.alignTo(message, Phaser.BOTTOM_CENTER, 0, 50)
 
     let ctaBtnContent = game.make.text(0, 0, 'PROTECT', {
-      font: 'bold 50px SegoeUI-Bold',
+      font: 'bold 50px notosans-bold',
       fill: '#ffffff'
     })
     ctaBtnContent.anchor.set(0.5)

@@ -21,11 +21,20 @@ export default class extends Phaser.State {
     this.gameObjects.tentacles = tentacles
     tentacles.inputEnableChildren = true
 
-    let particles = game.add.emitter(0, 0, 200)
+    let particles = game.add.emitter(0, 0, 100)
     particles.makeParticles('particles', Phaser.Animation.generateFrameNames('particle_', 1, 4, '.png'))
     particles.gravity.set(0)
-    particles.minParticleSpeed.set(-200, -200)
-    particles.maxParticleSpeed.set(200, 200)
+    let particlesSpeed = 600
+    particles.minParticleSpeed.set(-particlesSpeed, -particlesSpeed)
+    particles.maxParticleSpeed.set(particlesSpeed, particlesSpeed)
+
+    let timer = game.time.create(false)
+    let spawnEvent = timer.loop(Phaser.Timer.SECOND, spawnTentacle)
+    timer.add(Phaser.Timer.SECOND * 3, () => {
+      spawnEvent.delay = Phaser.Timer.SECOND * 0.25
+    })
+
+    let allowClick = true
 
     let canFinal = false
 
@@ -51,6 +60,7 @@ export default class extends Phaser.State {
       let {x, y} = game.rnd.pick(positions)
       tentacle.position.set(x, y)
       tentacle.rotation = game.physics.arcade.angleBetween(tentacle, data)
+      let distance = game.math.distance(x, y, data.x, data.y)
       game.physics.enable(tentacle)
       
       tentacle.update = () => {
@@ -60,11 +70,17 @@ export default class extends Phaser.State {
       }
       game.physics.arcade.moveToXY(tentacle, data.x, data.y)
       tentacle.events.onInputDown.add((tentacle, pointer) => {
+        if (!allowClick) {
+          return
+        }
+        allowClick = false
+        timer.add(Phaser.Timer.SECOND * 0.5, () => {
+          allowClick = true
+        })
         tentacle.destroy()
         particles.x = pointer.x
         particles.y = pointer.y
-        particles.start(true, Phaser.Timer.SECOND * 1, null, 30)
-        spawnTentacle()
+        particles.start(true, Phaser.Timer.SECOND * 1, null, 20)
       })
 
       return tentacle
@@ -89,7 +105,7 @@ export default class extends Phaser.State {
     let tentacle = spawnTentacle()
     cursor.update = () => {
       if (moveCursor) {
-        let speed = 100
+        let speed = 200
         let tentacleBounds = tentacle.getBounds()
         let { centerX: targetX, centerY: targetY} = tentacleBounds
         game.physics.arcade.moveToXY(cursor, targetX, targetY, speed)
@@ -107,11 +123,16 @@ export default class extends Phaser.State {
               particles.x = cursor.x
               particles.y = cursor.y
               particles.start(true, Phaser.Timer.SECOND, null, 30)
-              spawnTentacle()
-              canFinal = true
+              startGame()
             })
         }
       }
+    }
+
+    function startGame () {
+      spawnTentacle()
+      canFinal = true
+      timer.start()
     }
   }
 
